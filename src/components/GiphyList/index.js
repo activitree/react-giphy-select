@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Scrollbars } from 'react-custom-scrollbars';
-import Masonry from 'react-masonry-component';
-import styles from './styles.css';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Scrollbars } from 'react-custom-scrollbars'
+import Masonry from 'react-masonry-component'
+import styles from './styles.css'
 
 export default class GiphyList extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ export default class GiphyList extends Component {
     renderEntry: PropTypes.func,
     onEntrySelect: PropTypes.func,
     loadNextPage: PropTypes.func.isRequired,
-  };
+  }
 
   static defaultProps = {
     theme: {},
@@ -49,24 +49,24 @@ export default class GiphyList extends Component {
 
   _onScroll = values => {
     if (values.top === 1) {
-      this.props.loadNextPage();
+      this.props.loadNextPage()
     }
   }
 
   _onWheel = e => {
     // Disable page scroll, but enable gifs scroll
-    const { clientHeight, scrollHeight, scrollTop } = this._scrollbars.getValues();
+    const { clientHeight, scrollHeight, scrollTop } = this._scrollbars.getValues()
     if (e.deltaY > 0) {
       if (scrollTop < scrollHeight - clientHeight - e.deltaY) {
-        e.stopPropagation();
+        e.stopPropagation()
       } else {
-        this._scrollbars.scrollToBottom();
+        this._scrollbars.scrollToBottom()
       }
     } else {
       if (scrollTop > -e.deltaY) { // eslint-disable-line no-lonely-if
-        e.stopPropagation();
+        e.stopPropagation()
       } else {
-        this._scrollbars.scrollTop();
+        this._scrollbars.scrollTop()
       }
     }
   }
@@ -81,27 +81,22 @@ export default class GiphyList extends Component {
     listEntry: styles.listEntry,
     listEntryImage: styles.listEntryImage,
     ...this.props.theme,
-  };
+  }
 
   render() {
-    const { items, onEntrySelect } = this.props;
-    const theme = this._theme;
+    const { items, onEntrySelect } = this.props
+    const theme = this._theme
 
     return (
-      <div
-        className={items.length ? theme.list : theme.listEmpty}
-        onWheel={this._onWheel}
-      >
-        <Scrollbars
-          onScrollFrame={this._onScroll}
-          renderTrackVertical={() => (
+      <div className={items.length ? theme.list : theme.listEmpty} onWheel={this._onWheel}>
+        <Scrollbars onScrollFrame={this._onScroll} renderTrackVertical={() => (
             <div className={theme.listScrollbar} />
           )}
           renderThumbVertical={props => (
             <div {...props} className={theme.listScrollbarThumb} />
           )}
           hideTracksWhenNotNeeded
-          ref={element => { this._scrollbars = element; }}
+          ref={element => { this._scrollbars = element }}
         >
           <Masonry className={theme.listMasonry} role="listbox">
             {items.map(entry => (
@@ -115,6 +110,6 @@ export default class GiphyList extends Component {
           </Masonry>
         </Scrollbars>
       </div>
-    );
+    )
   }
 }

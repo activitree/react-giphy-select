@@ -1,1 +1,1 @@
-export default from './components/GiphySelect';
+export default from './components/GiphySelect'
