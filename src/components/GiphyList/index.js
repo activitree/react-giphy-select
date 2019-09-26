@@ -52,7 +52,7 @@ export default class GiphyList extends Component {
       this.props.loadNextPage()
     }
   }
-
+/*
   _onWheel = e => {
     // Disable page scroll, but enable gifs scroll
     const { clientHeight, scrollHeight, scrollTop } = this._scrollbars.getValues()
@@ -70,7 +70,7 @@ export default class GiphyList extends Component {
       }
     }
   }
-
+*/
   _theme = {
     list: styles.list,
     listEmpty: styles.listEmpty,
