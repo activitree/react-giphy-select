@@ -100,7 +100,7 @@ export default class GiphyList extends Component {
         >
           <Masonry className={theme.listMasonry} role="listbox">
             {items.map((index, entry) => (
-              <div key={index + entry.id} className={theme.listItem}>
+              <div key={`${index} + ${entry.id}`} className={theme.listItem}>
                 {this.props.renderEntry(entry, onEntrySelect, { theme })}
               </div>
             ))}
