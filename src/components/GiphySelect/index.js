@@ -39,7 +39,7 @@ export default class GiphySelect extends Component {
     this._fetchItems()
     setTimeout(() =>{
       const el =  document.getElementById('gsw')
-      el.addEventListener('wheel', e => this._onWheel(e), { passive: false })
+      el.addEventListener('wheel', e => this._onWheel(e), { passive: true })
     }, 250)
   }
 
