@@ -39,7 +39,7 @@ export default class GiphySelect extends Component {
     this._fetchItems()
     setTimeout(() =>{
       const el =  document.getElementById('gsw')
-      el.addEventListener('wheel', this._onWheel, { passive: false })
+      el.addEventListener('wheel', e => this._onWheel(e), { passive: false })
     }, 250)
   }
 
@@ -76,7 +76,10 @@ export default class GiphySelect extends Component {
     }, this.props.requestDelay)
   }
 
-  _onWheel = e => e.preventDefault()
+  _onWheel = e => {
+    console.log('I do have event here: ', e)
+    e.preventDefault()
+  }
 
   _fetchItems = () => {
     const { requestKey, requestLang, requestRating } = this.props
