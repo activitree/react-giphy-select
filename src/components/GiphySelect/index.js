@@ -35,11 +35,19 @@ export default class GiphySelect extends Component {
     items: [],
   }
 
-  componentWillMount() {
+  componentDidMount () {
     this._fetchItems()
+    setTimeout(() =>{
+      const el =  document.getElementById('gsw')
+      el.addEventListener('wheel', this._onWheel, { passive: false })
+    }, 250)
   }
 
-  shouldComponentUpdate = () => !this._activeFetch
+  componentWillUnmount() {
+    const el =  document.getElementById('gsw')
+    el.removeEventListener('wheel', this._onWheel)
+  }
+  // shouldComponentUpdate = () => !this._activeFetch
 
   loadNextPage = () => {
     if (this._offset < this._totalCount) {
@@ -112,12 +120,8 @@ export default class GiphySelect extends Component {
     const theme = this._theme
 
     return (
-      <div className={theme.select} onWheel={this._onWheel}>
-        <input
-          className={theme.selectInput}
-          placeholder={placeholder}
-          onChange={this._onQueryChange}
-        />
+      <div className={theme.select} id='gsw'>
+        <input className={theme.selectInput} placeholder={placeholder} onChange={this._onQueryChange} />
         <GiphyList
           theme={theme}
           items={this.state.items}
