@@ -99,11 +99,8 @@ export default class GiphyList extends Component {
           ref={element => { this._scrollbars = element }}
         >
           <Masonry className={theme.listMasonry} role="listbox">
-            {items.map(entry => (
-              <div
-                key={entry.id}
-                className={theme.listItem}
-              >
+            {items.map((index, entry) => (
+              <div key={index + entry.id} className={theme.listItem}>
                 {this.props.renderEntry(entry, onEntrySelect, { theme })}
               </div>
             ))}
