@@ -3,6 +3,7 @@
   width: 340px;
   color: inherit;
   border: 1px solid #ccc;
+  touch-action: none;
 }
 
 .selectInput {

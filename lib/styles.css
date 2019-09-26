@@ -80,6 +80,7 @@
   width: 340px;
   color: inherit;
   border: 1px solid #ccc;
+  touch-action: none;
 }
 
 .react-giphy-select__src-components-GiphySelect-styles__selectInput___18Wcj {
