@@ -1,6 +1,5 @@
 npm-debug.log
 docs-dist/
-lib/
 node_modules/
 *.xml
 *.iml

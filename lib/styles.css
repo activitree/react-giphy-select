@@ -1,0 +1,99 @@
+/*  imported from styles.css  */
+
+.react-giphy-select__src-components-GiphyList-styles__list___Tdg5X {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 15px;
+  position: relative;
+  width: 330px;
+  height: 330px;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listEmpty___1SDRT {
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listEmpty___1SDRT::before {
+  content: 'No results.';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #aaa;
+  transform: translate(-50%, -50%);
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listScrollbar___1dS3n {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  bottom: 7px;
+  width: 4px;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  opacity: .1;
+  transition: opacity .4s;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__list___Tdg5X:hover .react-giphy-select__src-components-GiphyList-styles__listScrollbar___1dS3n {
+  opacity: .3;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__list___Tdg5X .react-giphy-select__src-components-GiphyList-styles__listScrollbar___1dS3n:hover,
+.react-giphy-select__src-components-GiphyList-styles__list___Tdg5X .react-giphy-select__src-components-GiphyList-styles__listScrollbar___1dS3n:active {
+  opacity: .6;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listScrollbarThumb___1L0ZG {
+  background-color: #000;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listMasonry___3rIoZ {
+  margin-left: 10px;
+  width: 315px;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listItem___2RULM {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 100px;
+  background-color: #ccc;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listEntry___D_T4j {
+  padding: 0;
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.react-giphy-select__src-components-GiphyList-styles__listEntryImage___1oyhk {
+  display: block;
+}
+/*  imported from styles.css  */
+
+.react-giphy-select__src-components-GiphySelect-styles__select___25GhN {
+  padding: 15px 0;
+  width: 340px;
+  color: inherit;
+  border: 1px solid #ccc;
+}
+
+.react-giphy-select__src-components-GiphySelect-styles__selectInput___18Wcj {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  padding: .5em .75em;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+.react-giphy-select__src-components-GiphySelect-styles__attribution___1RUSw {
+  margin-left: 15px;
+  margin-right: 15px;
+}
