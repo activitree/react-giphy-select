@@ -1,6 +1,6 @@
 # react-giphy-select
 
-[![Build Status](https://travis-ci.org/WEACOMRU/react-giphy-select.svg?branch=master)](https://travis-ci.org/WEACOMRU/react-giphy-select)
+<a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." /></a>
 [![npm version](https://badge.fury.io/js/react-giphy-select.svg)](https://badge.fury.io/js/react-giphy-select)
 
 > A React component for select GIFs by Giphy API.
