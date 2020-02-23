@@ -1,6 +1,6 @@
 {
   "name": "react-giphy-select",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A React component for select GIFs on GIPHY.",
   "main": "lib/index.js",
   "scripts": {
@@ -67,7 +67,7 @@
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.8",
     "react-custom-scrollbars": "^4.1.1",
-    "react-masonry-component": "^6.2.1"
+    "react-masonry-component": "git+https://github.com/activitree/react-masonry-component.git"
   },
   "peerDependencies": {
     "react": "^16.11.0"
