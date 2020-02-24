@@ -62,13 +62,13 @@ export default class GiphyList extends Component {
         >
           <Masonry className={theme.listMasonry} role="listbox">
             {items.map((entry, index) => {
-              if (entry.images && entry.images.fixed_width_small && entry.images.fixed_width_small.url) {
+              // if (entry.images && entry.images.fixed_width_small && entry.images.fixed_width_small.url) {
                 return (
                   <div key={`${index}${entry.id}`} className={theme.listItem}>
                     {this.props.renderEntry(entry, onEntrySelect, { theme })}
                   </div>
                   )
-              }
+              // }
             }
             )}
           </Masonry>
