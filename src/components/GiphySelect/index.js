@@ -88,7 +88,6 @@ export default class GiphySelect extends Component {
   render() {
     const { placeholder, renderEntry, onEntrySelect } = this.props
     const theme = this._theme
-    console.log(this.state.items)
     return (
       <div className={theme.select}>
         <input className={theme.selectInput} placeholder={placeholder} onChange={this._onQueryChange} />
