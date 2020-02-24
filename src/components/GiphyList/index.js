@@ -5,55 +5,13 @@ import Masonry from 'react-masonry-component'
 import styles from './styles.css'
 
 export default class GiphyList extends Component {
-  static propTypes = {
-    theme: PropTypes.shape({
-      list: PropTypes.string,
-      listScrollbar: PropTypes.string,
-      listScrollbarThumb: PropTypes.string,
-      listMasonry: PropTypes.string,
-      listItem: PropTypes.string,
-      listEntry: PropTypes.string,
-      listEntryImage: PropTypes.string,
-    }),
-    items: PropTypes.arrayOf(PropTypes.object).isRequired,
-    renderEntry: PropTypes.func,
-    onEntrySelect: PropTypes.func,
-    loadNextPage: PropTypes.func.isRequired,
-  }
-
-  static defaultProps = {
-    theme: {},
-    renderEntry: (entry, onSelect, options) => (
-      <button
-        className={options.theme.listEntry}
-        style={{
-          width: `${entry.images.fixed_width_small.width}px`,
-          height: `${entry.images.fixed_width_small.height}px`,
-          backgroundImage: `url(${entry.images.fixed_width_small_still.url})`,
-        }}
-        onClick={() => onSelect(entry)}
-        role="option"
-        aria-selected
-      >
-        <img
-          className={options.theme.listEntryImage}
-          src={entry.images.fixed_width_small.url}
-          width={entry.images.fixed_width_small.width}
-          height={entry.images.fixed_width_small.height}
-          alt={entry.slug}
-        />
-      </button>
-    ),
-    onEntrySelect: () => {},
-  }
-
-  _onScroll = values => {
+  _onScroll (values) {
     if (values.top === 1) {
       this.props.loadNextPage()
     }
   }
 
-  _onWheel = e => {
+  _onWheel (e) {
     // Disable page scroll, but enable gifs scroll
     const { clientHeight, scrollHeight, scrollTop } = this._scrollbars.getValues()
     if (e.deltaY > 0) {
@@ -88,8 +46,8 @@ export default class GiphyList extends Component {
     const theme = this._theme
 
     return (
-      <div className={items.length ? theme.list : theme.listEmpty} onWheel={this._onWheel}>
-        <Scrollbars onScrollFrame={this._onScroll} renderTrackVertical={() => (
+      <div className={items.length ? theme.list : theme.listEmpty} onWheel={this._onWheel.bind(this)}>
+        <Scrollbars onScrollFrame={this._onScroll.bind(this)} renderTrackVertical={() => (
             <div className={theme.listScrollbar} />
           )}
           renderThumbVertical={props => (
@@ -99,14 +57,59 @@ export default class GiphyList extends Component {
           ref={element => { this._scrollbars = element }}
         >
           <Masonry className={theme.listMasonry} role="listbox">
-            {items.map((entry, index) => (
-              <div key={`${index}${entry.id}`} className={theme.listItem}>
-                {this.props.renderEntry(entry, onEntrySelect, { theme })}
-              </div>
-            ))}
+            {items.map((entry, index) => {
+              if (entry.images && entry.images.fixed_width_small && entry.images.fixed_width_small.url) {
+                return (
+                  <div key={`${index}${entry.id}`} className={theme.listItem}>
+                    {this.props.renderEntry(entry, onEntrySelect, { theme })}
+                  </div>
+                  )
+              }
+            }
+            )}
           </Masonry>
         </Scrollbars>
       </div>
     )
   }
+}
+
+GiphyList.defaultProps = {
+  theme: {},
+  renderEntry: (entry, onSelect, options) => (
+    <button
+      className={options.theme.listEntry}
+      style={{
+        width: `${entry.images.fixed_width_small.width}px`,
+        height: `${entry.images.fixed_width_small.height}px`,
+        backgroundImage: `url(${entry.images.fixed_width_small_still.url})`,
+      }}
+      onClick={() => onSelect(entry)}
+      role="option"
+      aria-selected>
+      <img
+        className={options.theme.listEntryImage}
+        src={entry.images.fixed_width_small.url}
+        width={entry.images.fixed_width_small.width}
+        height={entry.images.fixed_width_small.height}
+        alt={entry.slug} />
+    </button>
+  ),
+  onEntrySelect: () => {}
+}
+
+GiphyList.propTypes = {
+  theme: PropTypes.shape({
+    list: PropTypes.string,
+    listScrollbar: PropTypes.string,
+    listScrollbarThumb: PropTypes.string,
+    listMasonry: PropTypes.string,
+    listItem: PropTypes.string,
+    listEntry: PropTypes.string,
+    listEntryImage: PropTypes.string,
+  }),
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  renderEntry: PropTypes.func,
+  onEntrySelect: PropTypes.func,
+  loadNextPage: PropTypes.func.isRequired,
 }

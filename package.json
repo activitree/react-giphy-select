@@ -1,6 +1,6 @@
 {
   "name": "react-giphy-select",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "A React component for select GIFs on GIPHY.",
   "main": "lib/index.js",
   "scripts": {
