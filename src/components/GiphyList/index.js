@@ -5,6 +5,23 @@ import Masonry from 'react-masonry-component'
 import styles from './styles.css'
 
 export default class GiphyList extends Component {
+  constructor (props) {
+    super(props)
+    this._theme = {
+      list: styles.list,
+      listEmpty: styles.listEmpty,
+      listScrollbar: styles.listScrollbar,
+      listScrollbarThumb: styles.listScrollbarThumb,
+      listMasonry: styles.listMasonry,
+      listItem: styles.listItem,
+      listEntry: styles.listEntry,
+      listEntryImage: styles.listEntryImage,
+      ...this.props.theme,
+    }
+    this._onScroll = this._onScroll.bind(this)
+    this._onWheel = this._onWheel.bind(this)
+  }
+
   _onScroll (values) {
     if (values.top === 1) {
       this.props.loadNextPage()
@@ -29,25 +46,12 @@ export default class GiphyList extends Component {
     }
   }
 
-  _theme = {
-    list: styles.list,
-    listEmpty: styles.listEmpty,
-    listScrollbar: styles.listScrollbar,
-    listScrollbarThumb: styles.listScrollbarThumb,
-    listMasonry: styles.listMasonry,
-    listItem: styles.listItem,
-    listEntry: styles.listEntry,
-    listEntryImage: styles.listEntryImage,
-    ...this.props.theme,
-  }
-
   render() {
     const { items, onEntrySelect } = this.props
     const theme = this._theme
-
     return (
-      <div className={items.length ? theme.list : theme.listEmpty} onWheel={this._onWheel.bind(this)}>
-        <Scrollbars onScrollFrame={this._onScroll.bind(this)} renderTrackVertical={() => (
+      <div className={items.length ? theme.list : theme.listEmpty} onWheel={this._onWheel}>
+        <Scrollbars onScrollFrame={this._onScroll} renderTrackVertical={() => (
             <div className={theme.listScrollbar} />
           )}
           renderThumbVertical={props => (
