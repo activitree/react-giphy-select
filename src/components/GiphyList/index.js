@@ -92,7 +92,8 @@ GiphyList.defaultProps = {
         src={entry.images.fixed_width_small.url}
         width={entry.images.fixed_width_small.width}
         height={entry.images.fixed_width_small.height}
-        alt={entry.slug} />
+        // alt={entry.slug}
+      />
     </button>
   ),
   onEntrySelect: () => {}

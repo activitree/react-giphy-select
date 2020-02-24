@@ -5,34 +5,26 @@ import GiphyList from '../GiphyList'
 import styles from './styles.css'
 
 export default class GiphySelect extends Component {
-  static propTypes = {
-    theme: PropTypes.shape({
-      select: PropTypes.string,
-      selectInput: PropTypes.string,
-      attribution: PropTypes.string,
-    }),
-    placeholder: PropTypes.string,
-    requestDelay: PropTypes.number,
-    requestKey: PropTypes.string,
-    requestLang: PropTypes.string,
-    requestRating: PropTypes.string,
-    renderEntry: PropTypes.func,
-    onEntrySelect: PropTypes.func,
-  }
-
-  static defaultProps = {
-    theme: {},
-    placeholder: 'Search GIFs',
-    requestDelay: 500,
-    requestKey: 'dc6zaTOxFJmzC',
-    requestLang: '',
-    requestRating: 'pg',
-    renderEntry: GiphyList.defaultProps.renderEntry,
-    onEntrySelect: GiphyList.defaultProps.onEntrySelect,
-  }
-
-  state = {
-    items: [],
+  constructor (props) {
+    super(props)
+    this.state = {
+      items: []
+    }
+    this.loadNextPage = this.loadNextPage.bind(this)
+    this._onQueryChange = this._onQueryChange.bind(this)
+    this._fetchItems = this._fetchItems.bind(this)
+    this._updateItems = this._updateItems.bind(this)
+    this._theme = {
+      select: styles.select,
+      selectInput: styles.selectInput,
+      attribution: styles.attribution,
+      ...this.props.theme,
+    }
+    this._query = ''
+    this._requestTimer = null
+    this._offset = 0
+    this._totalCount = 0
+    // this._activeFetch = false
   }
 
   componentDidMount () {
@@ -41,13 +33,13 @@ export default class GiphySelect extends Component {
 
   // shouldComponentUpdate = () => !this._activeFetch
 
-  loadNextPage = () => {
+  loadNextPage () {
     if (this._offset < this._totalCount) {
       this._fetchItems()
     }
   }
 
-  _onQueryChange = e => {
+  _onQueryChange (e) {
     const query = e.target.value.trim()
 
     if (this._requestTimer) {
@@ -68,7 +60,7 @@ export default class GiphySelect extends Component {
     }, this.props.requestDelay)
   }
 
-  _fetchItems = () => {
+  _fetchItems () {
     const { requestKey, requestLang, requestRating } = this.props
     let endpoint = ''
     if (this._query) {
@@ -84,7 +76,7 @@ export default class GiphySelect extends Component {
       .catch(console.error) // eslint-disable-line no-console
   }
 
-  _updateItems = response => {
+  _updateItems (response) {
     this._activeFetch = false
     this.setState(prevState => ({
       items: [...prevState.items, ...response.data],
@@ -92,18 +84,6 @@ export default class GiphySelect extends Component {
     this._offset = response.pagination.offset + response.pagination.count
     this._totalCount = response.pagination.total_count
   }
-
-  _theme = {
-    select: styles.select,
-    selectInput: styles.selectInput,
-    attribution: styles.attribution,
-    ...this.props.theme,
-  }
-  _query = ''
-  _requestTimer = null
-  _offset = 0
-  _totalCount = 0
-  _activeFetch = false
 
   render() {
     const { placeholder, renderEntry, onEntrySelect } = this.props
@@ -117,10 +97,35 @@ export default class GiphySelect extends Component {
           items={this.state.items}
           renderEntry={renderEntry}
           onEntrySelect={onEntrySelect}
-          loadNextPage={this.loadNextPage}
-        />
+          loadNextPage={this.loadNextPage} />
         <div className={theme.attribution}>Powered by Giphy</div>
       </div>
     )
   }
+}
+
+GiphySelect.defaultProps = {
+  theme: {},
+  placeholder: 'Search GIFs',
+  requestDelay: 500,
+  requestKey: 'dc6zaTOxFJmzC',
+  requestLang: '',
+  requestRating: 'pg',
+  renderEntry: GiphyList.defaultProps.renderEntry,
+  onEntrySelect: GiphyList.defaultProps.onEntrySelect,
+}
+
+GiphySelect.propTypes = {
+  theme: PropTypes.shape({
+    select: PropTypes.string,
+    selectInput: PropTypes.string,
+    attribution: PropTypes.string,
+  }),
+  placeholder: PropTypes.string,
+  requestDelay: PropTypes.number,
+  requestKey: PropTypes.string,
+  requestLang: PropTypes.string,
+  requestRating: PropTypes.string,
+  renderEntry: PropTypes.func,
+  onEntrySelect: PropTypes.func,
 }
