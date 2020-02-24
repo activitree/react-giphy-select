@@ -24,7 +24,7 @@ export default class GiphySelect extends Component {
     this._requestTimer = null
     this._offset = 0
     this._totalCount = 0
-    // this._activeFetch = false
+    this._activeFetch = false
   }
 
   componentDidMount () {
@@ -88,7 +88,7 @@ export default class GiphySelect extends Component {
   render() {
     const { placeholder, renderEntry, onEntrySelect } = this.props
     const theme = this._theme
-
+    console.log(this.state.items)
     return (
       <div className={theme.select}>
         <input className={theme.selectInput} placeholder={placeholder} onChange={this._onQueryChange} />
