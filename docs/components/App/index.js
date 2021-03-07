@@ -3,7 +3,6 @@ import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/di
 import bash from 'react-syntax-highlighter/dist/languages/bash';
 import javascript from 'react-syntax-highlighter/dist/languages/javascript';
 import tomorrowNightEighties from 'react-syntax-highlighter/dist/styles/tomorrow-night-eighties';
-import { ObjectInspector } from 'react-inspector';
 import GiphySelect from 'GiphySelect'; // eslint-disable-line import/no-unresolved, import/extensions
 import styles from './styles.css';
 
@@ -57,7 +56,6 @@ export default class App extends Component {
           <h3 className={styles.appInspectorTitle}>
             Please, select a GIF
           </h3>
-          <ObjectInspector data={this.state.entry} />
         </div>
         <p>
           By default it show GIFs currently trending online. But user can request
