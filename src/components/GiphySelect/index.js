@@ -70,7 +70,7 @@ export default class GiphySelect extends Component {
     }
     const offset = this._offset
 
-    fetch(`${location.protocol}//api.giphy.com/v1/gifs/${endpoint}offset=${offset}&lang=${requestLang}&rating=${requestRating}&api_key=${requestKey}`)
+    fetch(`https://api.giphy.com/v1/gifs/${endpoint}offset=${offset}&lang=${requestLang}&rating=${requestRating}&api_key=${requestKey}`)
       .then(response => response.json())
       .then(this._updateItems)
       .catch(console.error) // eslint-disable-line no-console

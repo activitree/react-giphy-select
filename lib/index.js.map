@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.js"],"names":["GiphySelect"],"mappings":";;;;;;;;;AAAA;;eAEeA,oB","sourcesContent":["import GiphySelect from './components/GiphySelect'\n\nexport default GiphySelect\n"],"file":"index.js"}

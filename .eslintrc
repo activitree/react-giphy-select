@@ -1,21 +1,92 @@
 {
   "env": {
-    "browser": true
+    "meteor": true,
+    "browser": true,
+    "es6": true,
+    "node": true
   },
-  "extends": "airbnb",
-  "parser": "babel-eslint",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "Meteor": false,
+    "Session": false
+  },
+  "parserOptions": {
+    "allowImportExportEverywhere": true,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "parser": "@babel/eslint-parser",
+  "plugins": [
+    "react",
+    "node",
+    "meteor",
+    "import",
+    "react-hooks",
+    "security",
+    "@babel"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "standard",
+    "plugin:react/recommended",
+    // "standard-jsx", // this is done by React plugin
+    "plugin:meteor/recommended",
+    "plugin:security/recommended"
+  ],
+  "settings": {
+    "import/resolver": "meteor",
+    "react": {
+      "createClass": "createReactClass", // Regex for Component Factory to use,
+      // default to "createReactClass"
+      "pragma": "React",  // Pragma to use, default to "React"
+      "version": "detect", // React version. "detect" automatically picks the version you have installed.
+      // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+      // default to latest and warns if missing
+      // It will default to "detect" in the future
+      "flowVersion": "0.53" // Flow version
+    },
+    "propWrapperFunctions": [
+      // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
+      "forbidExtraProps",
+      {"property": "freeze", "object": "Object"},
+      {"property": "myFavoriteWrapper"}
+    ],
+    "linkComponents": [
+      // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
+      "Hyperlink",
+      {"name": "Link", "linkAttribute": "to"}
+    ]
+  },
   "rules": {
-    "arrow-parens": ["error", "as-needed"],
-    "import/no-extraneous-dependencies": "off",
-    "jsx-a11y/anchor-has-content": "warn",
-    "jsx-a11y/no-static-element-interactions": "warn",
-    "no-floating-decimal": "off",
-    "no-mixed-operators": "off",
-    "no-underscore-dangle": ["error", {
-      "allow": ["_example"],
-      "allowAfterThis": true,
-      "allowAfterSuper": true
-    }],
-    "react/jsx-filename-extension": "off"
+    "no-console": "off",
+    "no-undef": [2],
+    "no-case-declarations": "off",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-first-prop-new-line": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/jsx-closing-tag-location": "off",
+    "object-curly-newline": "off",
+    // "react/jsx-handler-names": "off",
+    "react/prop-types": "off",
+    // "node/exports-style": ["error", "module.exports"],
+    // "node/prefer-global/buffer": ["error", "always"],
+    // "node/prefer-global/console": ["error", "always"],
+    // "node/prefer-global/process": ["error", "always"],
+    // "node/prefer-global/url-search-params": ["error", "always"],
+    // "node/prefer-global/url": ["error", "always"],
+    // "node/prefer-promises/dns": "error",
+    // "node/prefer-promises/fs": "error",
+    "node/no-unsupported-features/es-syntax": "off",
+    "node/no-missing-import": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import/no-extraneous-dependencies": 0,
+    "meteor/no-session": 0,
+    "meteor/audit-argument-checks": 0
   }
 }

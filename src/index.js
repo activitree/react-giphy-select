@@ -1,1 +1,3 @@
-export default from './components/GiphySelect'
+import GiphySelect from './components/GiphySelect'
+
+export default GiphySelect
