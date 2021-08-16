@@ -81,8 +81,8 @@ export default class GiphySelect extends Component {
     this.setState(prevState => ({
       items: [...prevState.items, ...response.data],
     }))
-    this._offset = response.pagination.offset + response.pagination.count
-    this._totalCount = response.pagination.total_count
+    this._offset = response?.pagination?.offset + response?.pagination?.count
+    this._totalCount = response?.pagination?.total_count
   }
 
   render() {
